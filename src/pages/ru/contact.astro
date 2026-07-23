@@ -1,0 +1,62 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import ContactUs from '~/components/widgets/Contact.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+
+const metadata = {
+  title: 'Контакты - Siplinx AI',
+};
+---
+
+<Layout metadata={metadata}>
+  <HeroText tagline="Контакты" title="Давайте общаться!" />
+
+  <ContactUs
+    id="form"
+    title="Напишите нам сегодня!"
+    subtitle="Для быстрых ответов изучите наш раздел FAQ. Возможно, вы найдёте решение прямо там! Если нет, наша команда поддержки с удовольствием поможет вам."
+    inputs={[
+      { type: 'text', name: 'name', label: 'Имя' },
+      { type: 'email', name: 'email', label: 'Электронная почта' },
+    ]}
+    textarea={{ label: 'Сообщение' }}
+    disclaimer={{
+      label: 'Отправляя эту форму, вы подтверждаете и соглашаетесь со сбором ваших персональных данных.',
+    }}
+    description="Наша служба поддержки обычно отвечает в течение 24 рабочих часов."
+  />
+
+  <Features2
+    title="Мы здесь, чтобы помочь!"
+    items={[
+      {
+        title: 'Общая поддержка',
+        description: 'Вопросы по аккаунту, подписке, оплате или работе Siplinx AI? Напишите нам - ответим быстро.',
+      },
+      {
+        title: 'Продажи и Enterprise',
+        description: 'Интересует корпоративный план, групповые лицензии или индивидуальное решение? Давайте обсудим.',
+      },
+      {
+        title: 'Техническая поддержка',
+        description: 'Проблемы с установкой, загрузкой моделей, захватом аудио или производительностью? Мы разберёмся.',
+      },
+      {
+        title: 'Telegram',
+        description: 't.me/amanyessen',
+        icon: 'tabler:brand-telegram',
+      },
+      {
+        title: 'Email',
+        description: 'support@siplinx.com',
+        icon: 'tabler:mail',
+      },
+      {
+        title: 'Время ответа',
+        description: 'Обычно отвечаем в течение 24 рабочих часов.',
+        icon: 'tabler:clock',
+      },
+    ]}
+  />
+</Layout>

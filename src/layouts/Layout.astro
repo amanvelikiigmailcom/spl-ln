@@ -1,0 +1,385 @@
+---
+import '~/assets/styles/tailwind.css';
+
+import { I18N } from 'astrowind:config';
+
+import CommonMeta from '~/components/common/CommonMeta.astro';
+import Favicons from '~/components/Favicons.astro';
+import CustomStyles from '~/components/CustomStyles.astro';
+import ApplyColorMode from '~/components/common/ApplyColorMode.astro';
+import Metadata from '~/components/common/Metadata.astro';
+import SiteVerification from '~/components/common/SiteVerification.astro';
+import Analytics from '~/components/common/Analytics.astro';
+import BasicScripts from '~/components/common/BasicScripts.astro';
+
+// Comment the line below to disable View Transitions
+import { ClientRouter } from 'astro:transitions';
+
+import type { MetaData as MetaDataType } from '~/types';
+
+export interface Props {
+  metadata?: MetaDataType;
+}
+
+const { metadata = {} } = Astro.props;
+const { language, textDirection } = I18N;
+const isRuPage = Astro.url.pathname.startsWith('/ru');
+const lang = isRuPage ? 'ru' : language;
+---
+
+<!doctype html>
+<html lang={lang} dir={textDirection} class="2xl:text-[20px]">
+  <head>
+    <CommonMeta />
+    <Favicons />
+    <CustomStyles />
+    <ApplyColorMode />
+    <Metadata {...metadata} />
+    <SiteVerification />
+    <Analytics />
+
+    <link rel="preconnect" href="https://images.unsplash.com" />
+
+    <!-- Comment the line below to disable View Transitions -->
+    <ClientRouter fallback="swap" />
+
+    <!-- Global UI animation styles -->
+    <style is:global>
+      /* Scroll-reveal helpers for custom pages */
+      .reveal {
+        opacity: 0;
+        transform: translateY(1.5rem);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .reveal.revealed {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-left {
+        opacity: 0;
+        transform: translateX(-2rem);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .reveal-left.revealed {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .reveal-scale {
+        opacity: 0;
+        transform: scale(0.93);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease;
+      }
+      .reveal-scale.revealed {
+        opacity: 1;
+        transform: scale(1);
+      }
+      /* Gradient animated border glow on hover for cards */
+      .card-hover {
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease,
+          border-color 0.25s ease;
+      }
+      .card-hover:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 40px -8px rgba(59, 130, 246, 0.2);
+      }
+      /* Animated gradient text */
+      .gradient-animate {
+        background-size: 200% auto;
+        animation: gradientShift 4s ease infinite;
+        background-image: linear-gradient(90deg, #3b82f6, #7c3aed, #3b82f6);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      /* Floating orbs in hero backgrounds */
+      .orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.35;
+        animation: floatUp 6s ease-in-out infinite;
+        pointer-events: none;
+      }
+      .orb-blue {
+        background: #3b82f6;
+        animation-delay: 0s;
+      }
+      .orb-violet {
+        background: #7c3aed;
+        animation-delay: -3s;
+      }
+      .orb-cyan {
+        background: #06b6d4;
+        animation-delay: -1.5s;
+      }
+      /* Shimmer CTA button effect */
+      .btn-shimmer {
+        position: relative;
+        overflow: hidden;
+      }
+      .btn-shimmer::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.25) 50%, transparent 60%);
+        background-size: 200% 100%;
+        animation: shimmer 2.5s ease infinite;
+      }
+    </style>
+
+    <!-- PostHog - is:inline so Astro doesn't bundle/transform it -->
+    <script is:inline>
+      !function(t,e){var o,n,p,r;e.__SV||(window.posthog&&window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="Fi Di init Ji Xi Tr Ki tn Zi capture calculateEventProperties ln register register_once register_for_session unregister unregister_for_session dn getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync cn identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty un sn createPersonProfile setInternalOrTestUser hn Wi pn opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing rn debug Er it getPageViewId captureTraceFeedback captureTraceMetric Ui".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+      posthog.init('phc_B9YZLzpPQiVFuUZvtdMjzpCiYK4ovKzvvfZXYvmgDRzT', {
+        api_host: 'https://us.i.posthog.com',
+        defaults: '2026-05-30',
+        person_profiles: 'identified_only',
+      });
+    </script>
+
+    <!-- Microsoft Clarity - is:inline so Astro doesn't bundle/transform it -->
+    <script is:inline>
+      /* eslint-disable prefer-rest-params */
+      (function (c, l, a, r, i, t, y) {
+        c[a] =
+          c[a] ||
+          function () {
+            (c[a].q = c[a].q || []).push(arguments);
+          };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = 'https://www.clarity.ms/tag/' + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+      })(window, document, 'clarity', 'script', 'xbp2gn6ew9');
+      /* eslint-enable prefer-rest-params */
+    </script>
+
+    <!-- Meta Pixel - is:inline so Astro doesn't bundle/transform it -->
+    <script is:inline>
+      /* eslint-disable prefer-rest-params */
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = '2.0';
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '893895443283489');
+      fbq('track', 'PageView');
+      /* eslint-enable prefer-rest-params */
+    </script>
+  </head>
+
+  <body class="antialiased text-default bg-page tracking-tight">
+    <noscript>
+      <img
+        height="1"
+        width="1"
+        style="display:none"
+        src="https://www.facebook.com/tr?id=893895443283489&ev=PageView&noscript=1"
+      />
+    </noscript>
+    <slot />
+
+    <BasicScripts />
+
+    <!-- Scroll reveal for custom pages -->
+    <script>
+      function initReveal() {
+        const els = document.querySelectorAll<HTMLElement>('.reveal, .reveal-left, .reveal-scale');
+        if (!els.length) return;
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry, idx) => {
+              if (entry.isIntersecting) {
+                const el = entry.target as HTMLElement;
+                const delay = el.dataset.delay ? parseInt(el.dataset.delay) : idx * 80;
+                setTimeout(() => el.classList.add('revealed'), delay);
+                io.unobserve(el);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+        els.forEach((el) => io.observe(el));
+      }
+      initReveal();
+      document.addEventListener('astro:after-swap', initReveal);
+    </script>
+
+    <!-- PostHog event tracking -->
+    <script>
+      type PH = { capture: (e: string, p?: Record<string, unknown>) => void };
+      function phCapture(event: string, props?: Record<string, unknown>) {
+        const ph = (window as unknown as Record<string, unknown>).posthog as PH | undefined;
+        if (ph?.capture) ph.capture(event, props);
+      }
+      // Expose globally so page-level scripts can use it before posthog loads
+      (window as unknown as Record<string, unknown>).__ph = phCapture;
+
+      function phPageView() {
+        const path = window.location.pathname;
+        const lang = path.startsWith('/ru') ? 'ru' : 'en';
+        phCapture('$pageview', { path, lang });
+      }
+
+      function phClickHandler(e: MouseEvent) {
+        const target = (e.target as HTMLElement).closest('a, button');
+        if (!target) return;
+        const href = (target as HTMLAnchorElement).href || '';
+        const text = target.textContent?.trim().toLowerCase() || '';
+        const cls = target.className || '';
+        const path = window.location.pathname;
+        const lang = path.startsWith('/ru') ? 'ru' : 'en';
+
+        // Detect download / auth buttons
+        if (href.includes('siplinx-ai.vercel.app') || href.includes('/download')) {
+          let loc = 'other';
+          if (cls.includes('hero-btn')) loc = 'hero';
+          else if (cls.includes('cta-btn')) loc = 'cta';
+          else if (cls.includes('header-dl-btn')) loc = 'header';
+          else if (path.includes('/get')) loc = 'get_page';
+          else if (path.includes('/download')) loc = 'download_page';
+
+          const isWin = cls.includes('win') || text.includes('windows') || text.includes('exe');
+          const variant = href.includes('variant=direct') ? 'direct' : 'free_trial';
+
+          // Generic download click (backward compat)
+          phCapture('download_click', { location: loc, os: isWin ? 'windows' : 'mac', lang, page: path, variant });
+        } else if (text.includes('trial7') || cls.includes('promo')) {
+          phCapture('promo_copy', { lang });
+        } else if ((target as HTMLElement).dataset.langSwitch) {
+          phCapture('lang_switch', { to: (target as HTMLElement).dataset.langSwitch });
+        } else if (href.includes('/pricing') || text.includes('pricing') || text.includes('цены')) {
+          phCapture('pricing_click', { lang, from: path });
+        }
+
+        // Blog article CTA
+        const articleMatch = path.match(/\/(?:ru\/)?([^/]+)\/?$/);
+        if (articleMatch && href.includes('siplinx-ai.vercel.app') && !path.includes('/blog') && document.querySelector('article')) {
+          phCapture('blog_cta_click', { slug: articleMatch[1], lang, page: path });
+        }
+      }
+
+      if (!(window as unknown as Record<string, unknown>).__phInit) {
+        (window as unknown as Record<string, unknown>).__phInit = true;
+        document.addEventListener('click', phClickHandler);
+      }
+
+      document.addEventListener('astro:page-load', phPageView);
+    </script>
+
+    <!-- Clarity event tracking -->
+    <script>
+      type ClarityFn = (method: string, ...args: string[]) => void;
+
+      function clarityFire(event: string) {
+        const w = window as unknown as Record<string, unknown>;
+        if (typeof w.clarity === 'function') {
+          (w.clarity as ClarityFn)('event', event);
+        }
+      }
+
+      function clarityPageView() {
+        const path = window.location.pathname;
+        if (path === '/' || path === '/ru' || path === '/ru/') clarityFire('page_home');
+        else if (path.includes('/pricing')) clarityFire('page_pricing');
+        else if (path.includes('/download')) clarityFire('page_download');
+        else if (path.includes('/help')) clarityFire('page_help');
+        else if (path.includes('/blog')) clarityFire('page_blog');
+        else if (path.includes('/about')) clarityFire('page_about');
+        else if (path.includes('/contact')) clarityFire('page_contact');
+      }
+
+      function clarityClickHandler(e: MouseEvent) {
+        const target = (e.target as HTMLElement).closest('a, button');
+        if (!target) return;
+        const href = (target as HTMLAnchorElement).href || '';
+        const text = target.textContent?.trim().toLowerCase() || '';
+        const cls = target.className || '';
+
+        if (href.includes('/download') || text.includes('download') || text.includes('скачать')) {
+          if (cls.includes('hero-btn') || cls.includes('hero')) clarityFire('click_download_hero');
+          else if (cls.includes('cta-btn') || cls.includes('cta')) clarityFire('click_download_cta');
+          else clarityFire('click_download_nav');
+        } else if (
+          href.includes('/pricing') ||
+          text.includes('pricing') ||
+          text.includes('цены') ||
+          text.includes('тарифы')
+        ) {
+          clarityFire('click_pricing_nav');
+        } else if (href.includes('/help') || text.includes('help center') || text.includes('центр помощи')) {
+          clarityFire('click_help_center');
+        } else if (href.includes('/blog') || text.includes('blog') || text.includes('блог')) {
+          clarityFire('click_blog');
+        } else if (href.includes('/contact') || text.includes('contact') || text.includes('контакт')) {
+          clarityFire('click_contact');
+        } else if (
+          text.includes('get started') ||
+          text.includes('buy') ||
+          text.includes('choose') ||
+          text.includes('начать') ||
+          text.includes('выбрать') ||
+          text.includes('купить')
+        ) {
+          if (text.includes('starter') || text.includes('monthly') || text.includes('месяц'))
+            clarityFire('click_pricing_starter');
+          else if (text.includes('pro') || text.includes('annual') || text.includes('год'))
+            clarityFire('click_pricing_pro');
+          else clarityFire('click_pricing_cta');
+        } else if (text.includes('telegram') || href.includes('t.me')) {
+          clarityFire('click_telegram');
+        }
+      }
+
+      // Attach click handler once; use astro:page-load to track SPA page views
+      // Guard against double-registration across hot reloads
+      if (!(window as unknown as Record<string, unknown>).__clarityInit) {
+        (window as unknown as Record<string, unknown>).__clarityInit = true;
+        document.addEventListener('click', clarityClickHandler);
+      }
+
+      // Fire page-view on every navigation (initial + View Transitions)
+      document.addEventListener('astro:page-load', clarityPageView);
+    </script>
+
+    <script>
+      (function () {
+        const stored = localStorage.getItem('siplinx-lang');
+        const path = window.location.pathname;
+        const onRu = path.startsWith('/ru');
+        if (!stored) {
+          const bl = (navigator.language || '').toLowerCase();
+          const wantRu = bl.startsWith('ru');
+          localStorage.setItem('siplinx-lang', wantRu ? 'ru' : 'en');
+          if (wantRu && !onRu) {
+            window.location.replace('/ru' + (path === '/' ? '' : path));
+          }
+        } else if (stored === 'ru' && !onRu) {
+          window.location.replace('/ru' + (path === '/' ? '' : path));
+        } else if (stored === 'en' && onRu) {
+          window.location.replace(path.replace(/^\/ru/, '') || '/');
+        }
+      })();
+    </script>
+  </body>
+</html>

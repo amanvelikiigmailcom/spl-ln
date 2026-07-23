@@ -1,0 +1,124 @@
+---
+import type { Form as Props } from '~/types';
+import Button from '~/components/ui/Button.astro';
+
+const { inputs, textarea, disclaimer, button = 'Contact us', description = '' } = Astro.props;
+---
+
+<form id="lead-form">
+  {
+    inputs &&
+      inputs.map(
+        ({ type = 'text', name, label = '', autocomplete = 'on', placeholder = '' }) =>
+          name && (
+            <div class="mb-6">
+              {label && (
+                <label for={name} class="block text-sm font-medium">
+                  {label}
+                </label>
+              )}
+              <input
+                type={type}
+                name={name}
+                id={name}
+                autocomplete={autocomplete}
+                placeholder={placeholder}
+                class="py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900"
+              />
+            </div>
+          )
+      )
+  }
+
+  {
+    textarea && (
+      <div>
+        <label for="textarea" class="block text-sm font-medium">
+          {textarea.label}
+        </label>
+        <textarea
+          id="textarea"
+          name={textarea.name ? textarea.name : 'message'}
+          rows={textarea.rows ? textarea.rows : 4}
+          placeholder={textarea.placeholder}
+          class="py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900"
+        />
+      </div>
+    )
+  }
+
+  {
+    disclaimer && (
+      <div class="mt-3 flex items-start">
+        <div class="flex mt-0.5">
+          <input
+            id="disclaimer"
+            name="disclaimer"
+            type="checkbox"
+            class="cursor-pointer mt-1 py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900"
+          />
+        </div>
+        <div class="ml-3">
+          <label for="disclaimer" class="cursor-pointer select-none text-sm text-gray-600 dark:text-gray-400">
+            {disclaimer.label}
+          </label>
+        </div>
+      </div>
+    )
+  }
+
+  {
+    button && (
+      <div class="mt-10 grid">
+        <Button variant="primary" type="submit">
+          {button}
+        </Button>
+      </div>
+    )
+  }
+
+  {
+    description && (
+      <div class="mt-3 text-center">
+        <p class="text-sm text-gray-600 dark:text-gray-400">{description}</p>
+      </div>
+    )
+  }
+
+  <p id="lead-form-status" class="mt-3 text-center text-sm"></p>
+</form>
+
+<script>
+  const form = document.getElementById('lead-form') as HTMLFormElement | null;
+  const status = document.getElementById('lead-form-status');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const payload = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      message: formData.get('message'),
+    };
+
+    if (status) status.textContent = 'Sending...';
+
+    try {
+      const res = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (res.ok) {
+        if (status) status.textContent = 'Thanks! We received your message.';
+        form.reset();
+      } else {
+        if (status) status.textContent = 'Something went wrong. Please try again.';
+      }
+    } catch {
+      if (status) status.textContent = 'Something went wrong. Please try again.';
+    }
+  });
+</script>

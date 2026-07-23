@@ -1,0 +1,83 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Welcome to Siplinx AI - Download Starting',
+  description: 'Thank you for signing in. Your download is starting automatically.',
+  robots: { index: false, follow: false },
+};
+---
+
+<Layout metadata={metadata}>
+  <section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+    <div
+      class="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-violet-50 dark:from-[#06051A] dark:via-[#060512] dark:to-[#0A0618]"
+    >
+    </div>
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-violet-400/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="relative text-center px-4 max-w-lg mx-auto">
+      <div
+        class="w-20 h-20 mx-auto mb-6 rounded-full bg-green-100 dark:bg-green-900/40 flex items-center justify-center"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-10 h-10 text-green-600 dark:text-green-400"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+      </div>
+
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
+        You're in! Download is starting…
+      </h1>
+      <p class="text-gray-500 dark:text-slate-400 mb-8">
+        Your free trial is activated. Siplinx AI is downloading now.
+      </p>
+
+      <a
+        id="dl-manual"
+        href="#"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-violet-600 text-white font-semibold shadow hover:scale-105 transition-all duration-200"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+        </svg>
+        Click here if download doesn't start
+      </a>
+
+      <p class="mt-6 text-xs text-gray-400 dark:text-slate-500">
+        Need help? <a href="/help/" class="underline hover:text-blue-500">Visit our Help Center</a>
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Mark user as authenticated for future visits
+  localStorage.setItem('siplinx_authed', '1');
+
+  const params = new URLSearchParams(window.location.search);
+  const variant = params.get('variant');
+  const downloadUrl =
+    variant === 'direct'
+      ? 'https://siplinx-ai.vercel.app/download?variant=direct'
+      : 'https://siplinx-ai.vercel.app/download';
+
+  // Set manual link
+  const manualLink = document.getElementById('dl-manual');
+  if (manualLink) (manualLink as HTMLAnchorElement).href = downloadUrl;
+
+  // Auto-trigger download after short delay
+  setTimeout(() => {
+    window.location.href = downloadUrl;
+  }, 600);
+</script>

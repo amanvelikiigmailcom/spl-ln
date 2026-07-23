@@ -1,0 +1,47 @@
+[
+  {
+    "slug": "samal-bekmaganbetova",
+    "name": "Samal Bekmaganbetova",
+    "jobTitle": "Privacy & Data Governance Advisor",
+    "bio": "Samal Bekmaganbetova is a Programme Manager at the United Nations Office for Disaster Risk Reduction (UNDRR) with expertise in data governance, digital privacy frameworks, and responsible AI deployment. She advises Siplinx AI on privacy standards and data protection practices.",
+    "yearsOfExperience": 8,
+    "expertise": [
+      "Data Privacy",
+      "Digital Governance",
+      "International Frameworks",
+      "Disaster Risk Reduction",
+      "Urban Resilience"
+    ],
+    "topicFit": ["privacy", "security", "compliance", "data governance", "offline", "local processing"],
+    "linkedin": "https://www.linkedin.com/in/samalbek",
+    "authorUrl": "https://siplinx.com/authors/samal-bekmaganbetova/",
+    "photo": "/images/authors/samal-bekmaganbetova.png",
+    "lastUsed": null
+  },
+  {
+    "slug": "amanay-yessen",
+    "name": "Amanay Yessen",
+    "jobTitle": "CEO & Founder, FlyProx AI",
+    "bio": "Amanay Yessen is the CEO and founder of FlyProx AI, which builds AI agents that handle outbound sales calls for B2B teams. He previously ran the digital agencies A-93 and AmanCenter, delivering over a thousand websites and web apps and running performance marketing campaigns across Facebook, TikTok, and Google Ads.",
+    "yearsOfExperience": 10,
+    "expertise": ["AI Automation", "Growth Marketing", "Full-Stack Development", "Entrepreneurship"],
+    "topicFit": ["AI automation", "sales", "productivity", "integrations", "growth", "platform", "workflow"],
+    "linkedin": "https://www.linkedin.com/in/amanay-yessen-1a1a26188",
+    "authorUrl": "https://siplinx.com/authors/amanay-yessen/",
+    "photo": "/images/authors/amanay-yessen.jpg",
+    "lastUsed": null
+  },
+  {
+    "slug": "yulia-trishkina",
+    "name": "Yulia Trishkina",
+    "jobTitle": "Web3 Co-founder, TractionEye",
+    "bio": "Yulia Trishkina is the co-founder and business developer of TractionEye, a collective trading marketplace built on the TON blockchain. She previously worked as a product manager at AppScience and held growth and analyst roles at Sber, and studied programming and internet technologies at ITMO University.",
+    "yearsOfExperience": 5,
+    "expertise": ["Product Management", "Growth", "Web3 & Blockchain", "Entrepreneurship"],
+    "topicFit": ["product", "templates", "comparisons", "startups", "productivity", "guides"],
+    "linkedin": "https://www.linkedin.com/in/yulia-trishkina/",
+    "authorUrl": "https://siplinx.com/authors/yulia-trishkina/",
+    "photo": "/images/authors/yulia-trishkina.png",
+    "lastUsed": null
+  }
+]

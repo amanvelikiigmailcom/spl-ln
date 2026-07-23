@@ -1,0 +1,282 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Note from '~/components/widgets/Note.astro';
+import Features from '~/components/widgets/Features.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+
+const metadata = {
+  title: 'Siplinx AI - AI-заметки со встреч, которые остаются приватными',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Промобаннер - первый блок страницы -->
+  <div class="bg-gradient-to-r from-blue-600 to-violet-600 text-white py-3 px-4 text-center text-sm font-medium">
+    🎁 Войдите через Google и начните бесплатно - без кредитной карты
+  </div>
+
+  <Hero
+    tagline="Войдите через Google, без кредитной карты"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Начать бесплатно',
+        href: 'https://siplinx-ai.vercel.app/download',
+        icon: 'tabler:download',
+        class: 'hero-btn-mac',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&w=2070&q=80',
+      alt: 'Панель управления Siplinx AI',
+    }}
+  >
+    <Fragment slot="title">
+      Ваш AI-помощник на встречах,<br />
+      <span class="bg-gradient-to-r from-blue-500 to-violet-600 bg-clip-text text-transparent"
+        >который никогда не покидает ваше устройство</span
+      >
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Siplinx AI транскрибирует встречи локально - ваше аудио никогда не покидает устройство. Резюме и задачи формирует
+      качественный AI и доставляет мгновенно.
+      <strong>Никаких ботов в звонках. Никаких утечек данных.</strong>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-violet-50 dark:from-[#06051A] dark:via-[#060512] dark:to-[#0A0618]"
+      >
+      </div>
+    </Fragment>
+  </Hero>
+
+  <Note
+    title="Работает с:"
+    description="Zoom · Google Meet · Microsoft Teams · Webex · Slack Huddles · Очные встречи"
+  />
+
+  <Features
+    id="features"
+    tagline="Почему Siplinx AI"
+    title="Всё, что нужно вашим встречам"
+    subtitle="Транскрипция работает локально на вашем устройстве. Резюме создаёт качественный AI - быстро, точно, готово сразу после встречи."
+    items={[
+      {
+        title: 'Транскрипция в реальном времени (локально)',
+        description:
+          'Локальная модель распознавания речи работает на вашем устройстве в реальном времени - нулевая задержка, никакой загрузки аудио, ничего не покидает компьютер.',
+        icon: 'tabler:microphone',
+      },
+      {
+        title: 'Умные резюме (качественный AI)',
+        description:
+          'Транскрипт обрабатывает высококачественный AI и создаёт чёткое структурированное резюме с ключевыми решениями и контекстом - готово за секунды.',
+        icon: 'tabler:file-text-ai',
+      },
+      {
+        title: 'Извлечение задач',
+        description:
+          'Siplinx AI автоматически определяет задачи и обязательства. Никогда больше не забудьте о follow-up, дедлайне или решении.',
+        icon: 'tabler:list-check',
+      },
+      {
+        title: 'Приватность по умолчанию',
+        description:
+          'Ваше аудио транскрибируется локально и никогда не покидает устройство. Резюме создаётся только из текста транскрипта - запись никуда не отправляется.',
+        icon: 'tabler:shield-lock',
+      },
+      {
+        title: 'Поддержка всех платформ',
+        description:
+          'Работает с Zoom, Google Meet, Microsoft Teams, Webex и любым источником аудио на вашем Mac или Windows PC.',
+        icon: 'tabler:apps',
+      },
+      {
+        title: 'Мгновенный поиск и экспорт',
+        description:
+          'Ищите по всем заметкам со встреч мгновенно. Экспортируйте в Notion, Markdown, PDF или ваш любимый инструмент.',
+        icon: 'tabler:search',
+      },
+    ]}
+  />
+
+  <Steps
+    id="how-it-works"
+    title="Идеальные заметки за 3 простых шага"
+    items={[
+      {
+        title: 'Шаг 1: <span class="font-medium">Скачать и установить</span>',
+        description:
+          'Скачайте Siplinx AI для Mac или Windows. Установщик автоматически настраивает локальную модель транскрипции на вашем устройстве - займёт менее 5 минут.',
+        icon: 'tabler:download',
+      },
+      {
+        title: 'Шаг 2: <span class="font-medium">Присоединитесь к встрече</span>',
+        description:
+          'Начните любую встречу в Zoom, Google Meet, Teams или другой платформе. Siplinx AI автоматически определяет аудио и начинает транскрипцию локально.',
+        icon: 'tabler:video',
+      },
+      {
+        title: 'Шаг 3: <span class="font-medium">Получите ваши заметки</span>',
+        description:
+          'Когда встреча заканчивается, заметки уже готовы: полный транскрипт, умное резюме, задачи и ключевые решения - чётко и структурировано.',
+        icon: 'tabler:notes',
+      },
+      {
+        title: 'Готово! Сосредоточьтесь на разговоре.',
+        icon: 'tabler:check',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=2070&q=80',
+      alt: 'Siplinx AI в действии',
+    }}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-gradient-to-b from-blue-50 to-white dark:from-[#06051A] dark:to-transparent">
+      </div>
+    </Fragment>
+  </Steps>
+
+  <Testimonials
+    title="Любимый инструмент команд, которые ценят приватность"
+    subtitle="Присоединяйтесь к профессионалам, которые улучшили рабочий процесс со Siplinx AI."
+    testimonials={[
+      {
+        testimonial:
+          'Siplinx AI изменил то, как наша команда проводит встречи. Резюме точные, а то, что ничего не идёт в облако - это огромный плюс для нашей юридической команды.',
+        name: 'Сара Чен',
+        job: 'Директор по операциям, TechCorp',
+        image: {
+          src: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop',
+          alt: 'Сара Чен',
+        },
+      },
+      {
+        testimonial:
+          'Я полностью перестал делать заметки на встречах. Siplinx AI всё делает сам - и извлечение задач экономит мне минимум час каждый день.',
+        name: 'Маркус Родригез',
+        job: 'Продакт-менеджер, Startupify',
+        image: {
+          src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop',
+          alt: 'Маркус Родригез',
+        },
+      },
+      {
+        testimonial:
+          'Как консультант, работающий с несколькими клиентами, мне нужно что-то приватное. Siplinx AI - единственный инструмент, которому я доверяю: локальная обработка меняет всё.',
+        name: 'Прия Пател',
+        job: 'Независимый консультант',
+        image: {
+          src: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop',
+          alt: 'Прия Пател',
+        },
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-transparent via-blue-50 to-transparent dark:from-transparent dark:via-[#06051A]/50 dark:to-transparent"
+      >
+      </div>
+    </Fragment>
+  </Testimonials>
+
+  <FAQs
+    title="Часто задаваемые вопросы"
+    subtitle="Всё, что нужно знать о Siplinx AI."
+    tagline="FAQ"
+    classes={{ container: 'max-w-6xl' }}
+    items={[
+      {
+        title: 'Как Siplinx AI защищает мою приватность?',
+        description:
+          'Siplinx AI транскрибирует встречи с помощью локальной модели на вашем компьютере - ваше аудио никогда не покидает устройство. Резюме создаются из текста транскрипта с помощью качественного AI, запись никуда не передаётся.',
+      },
+      {
+        title: 'Как работает бесплатная пробная версия?',
+        description:
+          'Скачайте и установите Siplinx AI - кредитная карта не нужна. Используйте промокод TRIAL7 при оформлении для 100% скидки на пробный период. После окончания пробного периода выберите платный план для продолжения или подписка закончится.',
+      },
+      {
+        title: 'Какие платформы поддерживает Siplinx AI?',
+        description:
+          'Siplinx AI работает с любым приложением, которое использует ваш микрофон или вывод звука - включая Zoom, Google Meet, Microsoft Teams, Webex, Slack Huddles и очные встречи.',
+      },
+      {
+        title: 'Какие системные требования?',
+        description:
+          'Для Mac: macOS 12 (Monterey) и выше, Apple Silicon или Intel, минимум 8 ГБ ОЗУ. Для Windows: Windows 10/11 (64-бит), минимум 8 ГБ ОЗУ, 4 ГБ свободного места для локальных моделей.',
+      },
+      {
+        title: 'Нужен ли интернет для работы локальных AI-моделей?',
+        description:
+          'Транскрипция полностью офлайн - локальная STT модель работает без интернета. Для создания резюме требуется короткое соединение, чтобы обработать текст транскрипта. Ваше аудио никуда не отправляется.',
+      },
+      {
+        title: 'Могу ли я экспортировать заметки со встреч?',
+        description:
+          'Да! Экспортируйте в Markdown, PDF, Notion, Obsidian, Microsoft Word или скопируйте в буфер обмена. Все экспорты происходят локально - ваши данные никогда не касаются наших серверов.',
+      },
+    ]}
+  />
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Начать бесплатно',
+        href: 'https://siplinx-ai.vercel.app/download',
+        icon: 'tabler:download',
+        class: 'cta-btn-mac',
+      },
+    ]}
+  >
+    <Fragment slot="title"> Начните бесплатно </Fragment>
+
+    <Fragment slot="subtitle">
+      Войдите через Google - скачивание начнётся сразу. <br class="hidden md:inline" />
+      Без кредитной карты. Без облака. Ваши встречи всегда остаются приватными.
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-700 to-violet-700 dark:from-blue-900 dark:via-blue-950 dark:to-violet-950"
+      >
+      </div>
+    </Fragment>
+  </CallToAction>
+
+  <script>
+    // Auth flow: если не авторизован → Google → /welcome → скачивание
+    function handleDownloadClick(this: HTMLElement, e: MouseEvent) {
+      e.preventDefault();
+      const cls = (this as HTMLElement).className || '';
+      const loc = cls.includes('hero') ? 'hero' : cls.includes('cta') ? 'cta' : 'other';
+      const ph = (window as unknown as Record<string, unknown>).__ph as ((ev: string, p?: Record<string, unknown>) => void) | undefined;
+      ph?.('trial_click', { location: loc, lang: 'ru', page: '/ru/' });
+      ph?.('auth_start', { location: loc, lang: 'ru', page: '/ru/' });
+      const redirect = encodeURIComponent('https://siplinx-ai.vercel.app/download');
+      window.location.href = `https://siplinx-ai.vercel.app/web/start?redirect=${redirect}`;
+    }
+
+    function attachAuthToButtons() {
+      const selectors = ['.hero-btn-mac', '.cta-btn-mac'];
+      selectors.forEach((sel) => {
+        document.querySelectorAll<HTMLElement>(sel).forEach((el) => {
+          el.addEventListener('click', handleDownloadClick);
+        });
+      });
+    }
+
+    attachAuthToButtons();
+    document.addEventListener('astro:page-load', attachAuthToButtons);
+  </script>
+</Layout>

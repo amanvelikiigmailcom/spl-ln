@@ -1,0 +1,80 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import ContactUs from '~/components/widgets/Contact.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+
+const metadata = {
+  title: 'Contact',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- HeroText Widget ******************* -->
+
+  <HeroText tagline="Contact" title="Let's Connect!" />
+
+  <ContactUs
+    id="form"
+    title="Drop us a message today!"
+    subtitle="For quicker answers, explore our FAQs section. You may find the solution you're looking  for right there! If not, our support team is delighted to help you."
+    inputs={[
+      {
+        type: 'text',
+        name: 'name',
+        label: 'Name',
+      },
+      {
+        type: 'email',
+        name: 'email',
+        label: 'Email',
+      },
+    ]}
+    textarea={{
+      label: 'Message',
+    }}
+    disclaimer={{
+      label:
+        'By submitting this contact form, you acknowledge and agree to the collection of your personal information.',
+    }}
+    description="Our support team typically responds within 24 business hours."
+  />
+
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    title="We are here to help!"
+    items={[
+      {
+        title: 'General support',
+        description:
+          "Questions about your account, subscription, billing, or how Siplinx AI works? We're happy to help - reach out anytime.",
+      },
+      {
+        title: 'Sales & enterprise',
+        description:
+          "Interested in the Enterprise plan, volume licensing, or a custom deployment for your team? Let's talk.",
+      },
+      {
+        title: 'Technical support',
+        description:
+          "Running into issues with installation, model download, audio capture, or app performance? We'll get you sorted.",
+      },
+      {
+        title: 'Telegram',
+        description: 't.me/amanyessen',
+        icon: 'tabler:brand-telegram',
+      },
+      {
+        title: 'Email',
+        description: 'support@siplinx.com',
+        icon: 'tabler:mail',
+      },
+      {
+        title: 'Response time',
+        description: 'We typically reply within 24 business hours.',
+        icon: 'tabler:clock',
+      },
+    ]}
+  />
+</Layout>

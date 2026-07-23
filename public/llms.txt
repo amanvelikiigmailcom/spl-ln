@@ -1,0 +1,83 @@
+# Siplinx AI
+
+> Siplinx AI is a private, offline desktop app for AI-powered meeting notes. It transcribes, summarizes, and extracts action items from meetings, entirely on-device using a local LLM and local speech-to-text. No audio, transcripts, or data ever leave your device.
+
+Siplinx AI works with Zoom, Google Meet, and Microsoft Teams. Unlike cloud-based competitors (Granola, Fireflies.ai, Otter.ai, Fathom, tl;dv), Siplinx AI processes everything locally, making it the choice for professionals who handle confidential conversations. Available for Mac and Windows, in English and Russian.
+
+Key differentiators:
+- 100% offline: works without internet after setup
+- Local LLM + local STT (speech-to-text): no third-party AI APIs used
+- No subscription data risk: your meeting content never touches external servers
+- GDPR and HIPAA-friendly by design
+- Supports multi-speaker diarization (identifies who said what)
+- One-time purchase or subscription: no mandatory cloud account
+
+## Product
+
+- [Home](https://siplinx.com/): Overview of features, use cases, and value proposition of Siplinx AI
+- [Download](https://siplinx.com/download/): Download the desktop app for Mac and Windows, free trial available
+- [Pricing](https://siplinx.com/pricing/): Plans and pricing, one-time and subscription options
+- [Security](https://siplinx.com/security/): Technical details on how all data stays on-device and never reaches external servers
+- [About](https://siplinx.com/about/): Company background, mission, and team
+- [Help](https://siplinx.com/help/): Support documentation, FAQ, and getting started guides
+- [Contact](https://siplinx.com/contact/): Contact the Siplinx AI team
+
+## Blog: Comparisons and Alternatives
+
+- [Best AI Meeting Assistant in 2026: Privacy, Accuracy, Price](https://siplinx.com/best-ai-meeting-assistant-2025/): Compare the best AI meeting assistants for 2026. We cover privacy risks, transcription accuracy, pricing, and which tool
+- [Fireflies alternative: best private options in 2026](https://siplinx.com/fireflies-alternative/): Looking for a Fireflies alternative that keeps your meetings private? Compare the top options, including fully offline t
+- [Best Granola alternative in 2026: local AI, no cloud](https://siplinx.com/granola-alternative-siplinx/): Looking for a Granola alternative? Compare Siplinx AI vs Granola and top rivals on privacy, offline support, and price. 
+- [Otter AI Alternative: Local AI for Private Meeting Notes](https://siplinx.com/otter-ai-alternative/): The best otter ai alternative in 2026: compare offline, private, and free tools. Siplinx AI processes everything on-devi
+
+## Blog: Integrations
+
+- [Google Meet Notes: AI Transcription Without the Cloud](https://siplinx.com/google-meet-notes/): Get AI-powered Google Meet notes without uploading audio to any cloud. Compare Gemini, third-party bots, and offline too
+- [Teams Meeting Notes: Built-In Tools vs. AI in 2026](https://siplinx.com/teams-meeting-notes/): Teams meeting notes explained: native Loop notes, Copilot AI summaries, cost breakdown, privacy risks, and the best thir
+- [Zoom Meeting Notes: Best AI Tools in 2026](https://siplinx.com/zoom-meeting-notes/): Zoom meeting notes made easy with AI. Compare built-in and third-party tools, understand privacy trade-offs, and find th
+
+## Blog: Guides and How-To
+
+- [AI Meeting Notes: The Complete Guide for 2026](https://siplinx.com/ai-meeting-notes-complete-guide/): Learn how ai meeting notes work, which tools are worth using, and why privacy matters more than ever. Includes a compari
+- [How to Take Meeting Notes That Actually Work](https://siplinx.com/how-to-take-meeting-notes/): Learn how to take meeting notes that capture decisions, assign action items, and stay private. Practical methods, AI tip
+- [How to write meeting summaries with AI](https://siplinx.com/how-to-write-meeting-summaries-ai/): Learn how to write meeting summaries people actually read. Templates, AI tools, privacy-safe options, and how to keep AI
+- [Best Mac Meeting Notes App in 2026: Local AI vs Cloud](https://siplinx.com/mac-meeting-notes-app/): Compare the best Mac meeting notes apps in 2026. Local AI vs cloud options reviewed for privacy, accuracy, and price. Fi
+- [Real-Time Meeting Transcription: How It Works in 2026](https://siplinx.com/real-time-meeting-transcription/): Real-time meeting transcription converts speech to text as you talk. Learn how it works, which tools do it locally, and 
+- [Windows meeting recorder: best AI tools in 2026](https://siplinx.com/windows-meeting-recorder/): Find the best Windows meeting recorder for 2026. Compare local vs. cloud tools, privacy risks, HIPAA options, and how to
+
+## Blog: Privacy and Security
+
+- [Offline Meeting Recorder: Best Tools in 2026](https://siplinx.com/offline-meeting-recorder/): Find the best offline meeting recorder for 2026. Compare local tools that transcribe, summarize, and capture action item
+- [Private AI Meeting Tools: What Actually Stays Local](https://siplinx.com/private-ai-tools-local-processing/): Not all private AI meeting tools keep data on-device. Compare truly local tools vs cloud options and find the right fit 
+
+## Blog: Productivity
+
+- [Meeting Action Items: How to Extract and Track Every Task](https://siplinx.com/meeting-action-items/): Learn how to extract meeting action items reliably, assign clear ownership, and track follow-through. Covers manual and 
+- [AI Meeting Summary Generator: Transcript to Recap](https://siplinx.com/meeting-summary-generator/): How an AI meeting summary generator turns raw discussion into clean recaps. Compare top tools for 2026, learn what to av
+- [Productive Meetings AI: Strategies That Actually Work](https://siplinx.com/productive-meetings-ai-strategies/): Learn how AI makes meetings more productive in 2026. Real data, step-by-step tactics, and a privacy-first tool compariso
+
+## Blog: Templates
+
+- [Meeting minutes template: how to write minutes](https://siplinx.com/meeting-minutes-template/): Get a free meeting minutes template plus tips on how to write minutes that people actually read, use, and follow up on. 
+
+## Blog: Sales
+
+- [Sales call notes: how to capture, store, and use them](https://siplinx.com/sales-call-notes/): Learn how to take better sales call notes, what to capture, which formats work best in a CRM, and how AI tools now autom
+
+## Legal
+
+- [Privacy Policy](https://siplinx.com/privacy/): How Siplinx AI handles (or rather, does not collect) user data
+- [Terms of Service](https://siplinx.com/terms/): Terms of use for Siplinx AI
+
+## Optional
+
+- [Press](https://siplinx.com/press/): Press kit, media resources, and company facts
+- [Careers](https://siplinx.com/careers/): Open positions at Siplinx AI
+- [Authors](https://siplinx.com/authors/): Team members and advisors who write for Siplinx AI
+- [Russian version: Home](https://siplinx.com/ru/): Main page in Russian
+- [Russian version: Blog](https://siplinx.com/ru/blog/): Articles on AI, privacy, and meeting productivity in Russian
+- [Russian: Лучшая альтернатива Fireflies.ai в 2026 году: локальный AI без облака](https://siplinx.com/ru/fireflies-alternative/): Russian language version
+- [Russian: AI-заметки для Google Meet: транскрипция без бота в звонке](https://siplinx.com/ru/google-meet-notes/): Russian language version
+- [Russian: Лучшая альтернатива Granola 2026 — Siplinx AI vs Granola](https://siplinx.com/ru/granola-alternative-siplinx/): Russian language version
+- [Russian: Как делать заметки на встречах, которые реально работают (и как AI делает это лучше)](https://siplinx.com/ru/how-to-take-meeting-notes/): Russian language version
+- [Russian: Лучшее AI-приложение для заметок на встречах для Mac в 2026 году](https://siplinx.com/ru/mac-meeting-notes-app/): Russian language version
+- [Russian: Как автоматически извлекать задачи из встреч с помощью AI](https://siplinx.com/ru/meeting-action-items/): Russian language version

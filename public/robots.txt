@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://siplinx.com/sitemap-index.xml

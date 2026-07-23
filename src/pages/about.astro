@@ -1,0 +1,104 @@
+---
+import Features2 from '~/components/widgets/Features2.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Steps2 from '~/components/widgets/Steps2.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'About Siplinx AI',
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero
+    tagline="About Siplinx AI"
+    image={{
+      src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2070&q=80',
+      alt: 'Siplinx AI Team',
+    }}
+  >
+    <Fragment slot="title">
+      Built for people who care about<br />
+      <span class="bg-gradient-to-r from-blue-500 to-violet-600 bg-clip-text text-transparent"
+        >privacy and productivity</span
+      >
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Siplinx AI was founded on a simple belief: your meeting conversations are confidential and should stay that way.
+      We build AI tools that run entirely on your device - no cloud, no third parties, no compromises.
+    </Fragment>
+  </Hero>
+
+  <!-- Mission & Values -->
+  <Steps2
+    title="Our mission"
+    subtitle="We believe powerful AI should not come at the cost of your privacy. Siplinx AI was created to give individuals and teams the benefits of AI transcription and smart notes - without sending sensitive conversations to the cloud."
+    items={[
+      {
+        title: 'Privacy by design',
+        description:
+          'Every feature in Siplinx AI is built with privacy as the starting point, not an afterthought. All AI models run locally on your machine.',
+      },
+      {
+        title: 'Radical simplicity',
+        description:
+          'Meeting notes should just work. Install Siplinx AI, join your meeting, and your notes are ready when you finish. No setup wizards, no integrations to configure.',
+      },
+      {
+        title: 'Open to feedback',
+        description:
+          'We listen to our users and ship improvements continuously. Have a feature request? We want to hear it.',
+      },
+    ]}
+  />
+
+  <!-- What we offer -->
+  <Steps2
+    title="What makes Siplinx AI different"
+    isReversed={true}
+    callToAction={{
+      text: 'Download Free',
+      href: '/download/',
+    }}
+    items={[
+      {
+        title: '100% local AI processing',
+        description:
+          'Your audio never leaves your device. Transcription, summarization, and action item extraction all run on your CPU/GPU.',
+        icon: 'tabler:shield-lock',
+      },
+      {
+        title: 'Works with every meeting platform',
+        description:
+          'Zoom, Google Meet, Microsoft Teams, Webex, Slack Huddles - if it plays audio on your computer, Siplinx AI captures it.',
+        icon: 'tabler:apps',
+      },
+      {
+        title: 'Available for Mac and Windows',
+        description:
+          'Native desktop apps for macOS (Apple Silicon + Intel) and Windows 10/11. Fast, lightweight, and offline-first.',
+        icon: 'tabler:device-laptop',
+      },
+    ]}
+  />
+
+  <!-- Contact / Support -->
+  <Features2
+    title="Get in touch"
+    tagline="Support"
+    columns={2}
+    items={[
+      {
+        title: 'Email support',
+        description: 'Reach our team at support@siplinxai.com - we respond within one business day.',
+        icon: 'tabler:mail',
+      },
+      {
+        title: 'Community & feedback',
+        description: 'Join our community to share ideas, report bugs, and vote on upcoming features.',
+        icon: 'tabler:messages',
+      },
+    ]}
+  />
+</Layout>

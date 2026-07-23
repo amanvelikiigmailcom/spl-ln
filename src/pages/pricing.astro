@@ -1,0 +1,232 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import Prices from '~/components/widgets/Pricing.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'Pricing - Simple & Transparent',
+};
+---
+
+<Layout metadata={metadata}>
+  <HeroText
+    tagline="Pricing"
+    title="Simple, transparent pricing"
+    subtitle="Start free, then choose monthly or annual. Use code TRIAL7 to start free. Need a team? Contact us."
+  />
+
+  <!-- Promo Code Banner -->
+  <div class="max-w-2xl mx-auto px-4 mb-8 -mt-4">
+    <div
+      class="flex items-center justify-center gap-3 bg-gradient-to-r from-blue-50 to-violet-50 dark:from-blue-950/40 dark:to-violet-950/40 border border-blue-200 dark:border-blue-800 rounded-2xl px-6 py-4"
+    >
+      <span class="text-2xl">🎁</span>
+      <div class="text-center">
+        <p class="text-sm text-muted dark:text-slate-400 mb-1">
+          Use this code at checkout for 100% off your trial
+        </p>
+        <span
+          class="inline-block font-mono font-bold text-xl tracking-widest px-4 py-1.5 rounded-lg bg-gradient-to-r from-blue-600 to-violet-600 text-white select-all"
+        >
+          TRIAL7
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pricing Widget - three plans -->
+  <Prices
+    title="Simple, honest pricing"
+    subtitle="All features included. Local LLM and STT models run on your device. Your data never leaves your machine."
+    prices={[
+      {
+        title: 'monthly',
+        subtitle: 'Everything you need for private AI meeting notes',
+        price: 9,
+        period: 'per month',
+        items: [
+          { description: 'Unlimited meetings' },
+          { description: 'Local LLM + STT models included' },
+          { description: 'Real-time AI transcription' },
+          { description: 'Smart summaries & action items' },
+          { description: 'Speaker identification' },
+          { description: 'Custom vocabulary & names' },
+          { description: 'Export to Markdown, PDF, Notion, Obsidian' },
+          { description: 'Works offline - no internet required' },
+          { description: 'Mac & Windows native apps' },
+        ],
+        callToAction: {
+          text: 'Start Free Trial',
+          href: '/download/',
+        },
+      },
+      {
+        title: 'annual',
+        subtitle: 'Same features, better value - save 2 months',
+        price: 7.5,
+        period: 'per month · billed $90/year',
+        items: [
+          { description: 'Everything in Monthly' },
+          { description: '2 months free vs monthly' },
+          { description: 'Unlimited meetings' },
+          { description: 'Local LLM + STT models included' },
+          { description: 'Real-time AI transcription' },
+          { description: 'Smart summaries & action items' },
+          { description: 'Speaker identification' },
+          { description: 'Export to Markdown, PDF, Notion, Obsidian' },
+          { description: 'Works offline - no internet required' },
+          { description: 'Mac & Windows native apps' },
+        ],
+        callToAction: {
+          text: 'Start Free Trial',
+          href: '/download/',
+        },
+        hasRibbon: true,
+        ribbonTitle: 'Best value',
+      },
+      {
+        title: 'enterprise',
+        subtitle: 'For teams that need control, compliance, and a direct line to us',
+        items: [
+          { description: 'Everything in Annual' },
+          { description: 'Volume licensing for your team' },
+          { description: 'Priority support & onboarding' },
+          { description: 'Air-gap & offline deployment' },
+          { description: 'Custom model configuration' },
+          { description: 'HIPAA / GDPR compliance help' },
+          { description: 'Dedicated Telegram support channel' },
+        ],
+        callToAction: {
+          text: 'Message us on Telegram →',
+          href: 'https://t.me/amanyessen',
+          target: '_blank',
+        },
+      },
+    ]}
+  />
+
+  <!-- Features3 Widget -->
+  <Features3
+    title="Everything included in your plan"
+    subtitle="No add-ons, no upsells. One price, all features."
+    columns={2}
+    items={[
+      {
+        title: '100% Local Processing',
+        description: 'Local LLM and STT models run on your device. Zero cloud dependency, zero data exposure.',
+        icon: 'tabler:shield-lock',
+      },
+      {
+        title: 'Works Offline',
+        description: 'No internet required for transcription or summarization. Works anywhere - even on a plane.',
+        icon: 'tabler:wifi-off',
+      },
+      {
+        title: 'Multi-Platform Support',
+        description: 'Zoom, Google Meet, Teams, Webex, Slack Huddles - works with every platform you already use.',
+        icon: 'tabler:apps',
+      },
+      {
+        title: 'Real-time Transcription',
+        description: 'See your meeting transcript build in real time as the conversation unfolds.',
+        icon: 'tabler:microphone',
+      },
+      {
+        title: 'Automatic Model Updates',
+        description: 'Receive free local model upgrades and new features automatically as we release them.',
+        icon: 'tabler:refresh',
+      },
+      {
+        title: 'Mac & Windows',
+        description: 'Native apps for macOS (Apple Silicon + Intel) and Windows 10/11.',
+        icon: 'tabler:device-laptop',
+      },
+    ]}
+    classes={{ container: 'max-w-5xl' }}
+  />
+
+  <!-- Steps Widget -->
+  <Steps
+    title="Get started in minutes"
+    tagline="quick setup"
+    isReversed={true}
+    items={[
+      {
+        title: 'Download Siplinx AI',
+        icon: 'tabler:number-1',
+      },
+      {
+        title: 'Local LLM + STT models install automatically',
+        icon: 'tabler:number-2',
+      },
+      {
+        title: 'Enter code TRIAL7 to start free',
+        icon: 'tabler:number-3',
+      },
+      {
+        title: 'Join any meeting - notes appear instantly',
+        icon: 'tabler:number-4',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=987&q=80',
+      alt: 'Siplinx AI setup steps',
+    }}
+  />
+
+  <!-- FAQs Widget -->
+  <FAQs
+    title="Pricing FAQs"
+    subtitle="Have questions? We've got answers."
+    columns={1}
+    items={[
+      {
+        title: 'How does the free trial work?',
+        description:
+          'Download Siplinx AI for Mac or Windows - no credit card required. Enter promo code TRIAL7 at checkout to get 100% off your trial. You get full access to all features during the trial. After the trial, subscribe for $9/month to continue.',
+      },
+      {
+        title: 'What does "local LLM and STT" mean?',
+        description:
+          'When you install Siplinx AI, it downloads local AI models to your machine: a speech-to-text (STT) model for transcription, and a large language model (LLM) for summarization. These models run directly on your CPU or GPU - no cloud connection needed.',
+      },
+      {
+        title: 'Can I cancel at any time?',
+        description:
+          'Absolutely. Cancel anytime from your account settings with no fees or penalties. Your subscription ends at the current billing period.',
+      },
+      {
+        title: 'What payment methods do you accept?',
+        description:
+          'We accept all major credit cards (Visa, Mastercard, Amex) and PayPal. All payments are processed securely through Stripe.',
+      },
+      {
+        title: 'What happens after the trial ends?',
+        description:
+          'If you choose not to subscribe, your access to AI features ends. Your locally stored meeting notes remain on your device - we never delete your data.',
+      },
+      {
+        title: 'Is there a discount for annual billing?',
+        description: 'Yes! Pay annually and get 2 months free - that works out to $7.50/month billed as $90/year.',
+      },
+    ]}
+  />
+
+  <!-- CallToAction Widget -->
+  <CallToAction
+    title="Start your free trial"
+    subtitle="Use code TRIAL7 for 100% off. No credit card. No cloud."
+    actions={[
+      {
+        variant: 'primary' as const,
+        text: 'Download Free',
+        href: '/download/',
+        icon: 'tabler:download',
+      },
+    ]}
+  />
+</Layout>
