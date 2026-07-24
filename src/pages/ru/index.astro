@@ -255,6 +255,8 @@ const metadata = {
   </CallToAction>
 
   <script>
+    import { buildAuthRedirectUrl } from '~/utils/download-redirect';
+
     // Auth flow: если не авторизован → Google → /welcome → скачивание
     function handleDownloadClick(this: HTMLElement, e: MouseEvent) {
       e.preventDefault();
@@ -263,8 +265,7 @@ const metadata = {
       const ph = (window as unknown as Record<string, unknown>).__ph as ((ev: string, p?: Record<string, unknown>) => void) | undefined;
       ph?.('trial_click', { location: loc, lang: 'ru', page: '/ru/' });
       ph?.('auth_start', { location: loc, lang: 'ru', page: '/ru/' });
-      const redirect = encodeURIComponent('https://siplinx-ai.vercel.app/download');
-      window.location.href = `https://siplinx-ai.vercel.app/web/start?redirect=${redirect}`;
+      window.location.href = buildAuthRedirectUrl('https://siplinx-ai.vercel.app/download');
     }
 
     function attachAuthToButtons() {

@@ -245,6 +245,8 @@ const metadata = {
 </Layout>
 
 <script>
+  import { buildAuthRedirectUrl } from '~/utils/download-redirect';
+
   const label = document.getElementById('dl-label');
   if (label) {
     const isWin = navigator.userAgent.includes('Windows');
@@ -258,8 +260,7 @@ const metadata = {
     ph?.('get_cta_click', { lang: 'ru', page: '/ru/get/', variant: 'direct' });
     ph?.('google_signin_click', { lang: 'ru', page: '/ru/get/', variant: 'direct' });
     ph?.('auth_start', { location: 'get_page', lang: 'ru', variant: 'direct' });
-    const redirect = encodeURIComponent('https://siplinx-ai.vercel.app/download?variant=direct');
-    window.location.href = `https://siplinx-ai.vercel.app/web/start?redirect=${redirect}`;
+    window.location.href = buildAuthRedirectUrl('https://siplinx-ai.vercel.app/download?variant=direct');
   }
 
   document.querySelectorAll<HTMLElement>('a[href*="siplinx-ai.vercel.app/download"]').forEach((el) => {
