@@ -57,6 +57,18 @@ curl -s https://siplinx.com/страница/ | grep "маркер"
 curl -s https://siplinx.com/ru/страница/ | grep "маркер"
 ```
 
+### 5. GitHub-доступ сессии (push / PR / деплой через MCP)
+
+Push, создание PR и запуск деплоя через `mcp__github__*` работают только если для этого GitHub-аккаунта/организации **подключено GitHub-приложение Claude** (админом аккаунта, в настройках claude.ai → Settings → Connectors/GitHub). Если приложение не подключено, любой запрос к `api.github.com` из сессии — включая `git push` через встроенный прокси сессии, создание PR через MCP и прямые вызовы GitHub API — будет заблокирован с ошибкой:
+
+```
+GitHub access is not enabled for this session. An org admin must connect the Claude GitHub App for this organization.
+```
+
+Права, которые нужно выдать приложению при подключении: **Contents: Read and write**, **Pull requests: Read and write**, **Actions: Read and write** (для запуска деплоя).
+
+**Никогда не использовать личные GitHub-токены (PAT), присланные в чате, как обходной путь** — не прописывать их в `git remote`, не сохранять в файлах репозитория (в т.ч. в этом файле) и не документировать здесь как "способ пуша". Если официальный доступ не подключён — это нужно чинить через подключение GitHub-приложения, а не через токены в коде.
+
 ---
 
 See [AGENTS.md](./AGENTS.md) for full project documentation.
