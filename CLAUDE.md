@@ -69,6 +69,38 @@ GitHub access is not enabled for this session. An org admin must connect the Cla
 
 **Никогда не использовать личные GitHub-токены (PAT), присланные в чате, как обходной путь** — не прописывать их в `git remote`, не сохранять в файлах репозитория (в т.ч. в этом файле) и не документировать здесь как "способ пуша". Если официальный доступ не подключён — это нужно чинить через подключение GitHub-приложения, а не через токены в коде.
 
+### 6. Новый формат токенов Cloudflare (`cfat_` / `cfut_` / `cfk_`)
+
+С апреля 2026 Cloudflare выдаёт API-токены в новом формате со структурированным префиксом и CRC32-чексуммой на конце (см. changelog Cloudflare "Detect Cloudflare API tokens with DLP", `/fundamentals/api/get-started/token-formats/`):
+
+| Префикс | Что это | Где взять |
+| --- | --- | --- |
+| `cfat_` | Account Owned API Token (токен, привязанный к аккаунту) | Cloudflare Dashboard → My Profile → API Tokens → Create Custom Token |
+| `cfut_` | User API Token (токен, привязанный к пользователю) | Там же |
+| `cfk_` | User API Key | Legacy Global API Key |
+
+Это **рабочие, валидные** токены — используются точно так же, как токены старого формата: заголовком `Authorization: Bearer $CLOUDFLARE_API_TOKEN` в любом запросе к `api.cloudflare.com`, и точно так же подходят для `CLOUDFLARE_API_TOKEN` в GitHub Actions/wrangler.
+
+⚠️ **Ловушка:** старый эндпоинт `POST /client/v4/user/tokens/verify` может ошибочно возвращать `{"success":false,"errors":[{"code":1000,"message":"Invalid API Token"}]}` для токенов нового формата — это false negative устаревшего эндпоинта, а не признак того, что токен нерабочий. **Не делать вывод о невалидности токена по этому эндпоинту.** Проверять токен нужно реальным запросом к нужному ресурсу, например:
+
+```bash
+curl -sS "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID" -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN"
+curl -sS "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects" -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN"
+```
+
+Если это возвращает `"success":true` и виден нужный Pages-проект — токен рабочий.
+
+Секреты `CF_API_TOKEN` / `CF_ACCOUNT_ID` в GitHub Actions задаются только через **Settings → Secrets and variables → Actions** в самом репозитории — сессия Claude не может их прочитать или записать через MCP/API (путь `actions/secrets/*` заблокирован прокси сессии намеренно, в целях безопасности). Если деплой в `actions.yaml` падает на шаге "Deploy to Cloudflare Pages" с ошибкой про отсутствующий `CLOUDFLARE_API_TOKEN` — это значит секрет в репозитории протух/невалиден, и почитить его может только человек напрямую в GitHub UI.
+
+**Никогда не хранить сами значения токенов в этом файле или где-либо в репозитории** — только описание формата и процедуры проверки, как здесь.
+
+Если нужно задеплоить прямо сейчас, а секрет в GitHub ещё не обновлён, можно временно задеплоить вручную (значения токена передаются инлайн в команду, не сохраняются в shell-окружении и не пишутся в файлы):
+
+```bash
+npm run build
+CLOUDFLARE_API_TOKEN="<токен>" CLOUDFLARE_ACCOUNT_ID="<account id>" npx wrangler pages deploy dist --project-name=siplinxai-landing --branch=main
+```
+
 ---
 
 See [AGENTS.md](./AGENTS.md) for full project documentation.
