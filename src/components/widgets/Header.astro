@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { twMerge } from 'tailwind-merge';
 import Logo from '~/components/Logo.astro';
 import ToggleTheme from '~/components/common/ToggleTheme.astro';
 import ToggleMenu from '~/components/common/ToggleMenu.astro';
@@ -156,7 +157,10 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
           actions?.length ? (
             <span class="ml-4 rtl:ml-0 rtl:mr-4">
               {actions.map((btnProps) => (
-                <Button {...btnProps} class="ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm w-auto" />
+                <Button
+                  {...btnProps}
+                  class={twMerge('ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm w-auto', btnProps.class)}
+                />
               ))}
             </span>
           ) : (
