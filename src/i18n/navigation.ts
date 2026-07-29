@@ -21,7 +21,7 @@ export const headerDataRu = {
       variant: 'primary' as const,
       text: 'Начать бесплатно',
       href: 'https://siplinx-ai.vercel.app/download',
-      icon: 'tabler:brand-apple',
+      icon: 'tabler:download',
       class: 'header-dl-btn',
     },
   ],
