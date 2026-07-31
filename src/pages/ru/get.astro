@@ -245,7 +245,7 @@ const metadata = {
 </Layout>
 
 <script>
-  import { buildAuthRedirectUrl } from '~/utils/download-redirect';
+  import { buildAuthRedirectUrl, rememberLangPreference } from '~/utils/download-redirect';
 
   const label = document.getElementById('dl-label');
   if (label) {
@@ -256,6 +256,7 @@ const metadata = {
   // Auth flow: Google → /welcome?variant=direct → скачивание
   function handleGetDownloadClick(e: MouseEvent) {
     e.preventDefault();
+    rememberLangPreference('ru');
     const ph = (window as unknown as Record<string, unknown>).__ph as ((ev: string, p?: Record<string, unknown>) => void) | undefined;
     ph?.('get_cta_click', { lang: 'ru', page: '/ru/get/', variant: 'direct' });
     ph?.('google_signin_click', { lang: 'ru', page: '/ru/get/', variant: 'direct' });

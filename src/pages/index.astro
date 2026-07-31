@@ -262,13 +262,14 @@ const metadata = {
   </CallToAction>
 
   <script>
-    import { buildAuthRedirectUrl } from '~/utils/download-redirect';
+    import { buildAuthRedirectUrl, rememberLangPreference } from '~/utils/download-redirect';
 
     // Auth flow: if not signed in → Google auth → /welcome → download
     function handleDownloadClick(this: HTMLElement, e: MouseEvent) {
       e.preventDefault();
       const cls = (this as HTMLElement).className || '';
       const loc = cls.includes('hero') ? 'hero' : cls.includes('cta') ? 'cta' : 'other';
+      rememberLangPreference('en');
       const ph = (window as unknown as Record<string, unknown>).__ph as ((ev: string, p?: Record<string, unknown>) => void) | undefined;
       ph?.('trial_click', { location: loc, lang: 'en', page: '/' });
       ph?.('auth_start', { location: loc, lang: 'en', page: '/' });

@@ -255,13 +255,14 @@ const metadata = {
   </CallToAction>
 
   <script>
-    import { buildAuthRedirectUrl } from '~/utils/download-redirect';
+    import { buildAuthRedirectUrl, rememberLangPreference } from '~/utils/download-redirect';
 
     // Auth flow: если не авторизован → Google → /welcome → скачивание
     function handleDownloadClick(this: HTMLElement, e: MouseEvent) {
       e.preventDefault();
       const cls = (this as HTMLElement).className || '';
       const loc = cls.includes('hero') ? 'hero' : cls.includes('cta') ? 'cta' : 'other';
+      rememberLangPreference('ru');
       const ph = (window as unknown as Record<string, unknown>).__ph as ((ev: string, p?: Record<string, unknown>) => void) | undefined;
       ph?.('trial_click', { location: loc, lang: 'ru', page: '/ru/' });
       ph?.('auth_start', { location: loc, lang: 'ru', page: '/ru/' });

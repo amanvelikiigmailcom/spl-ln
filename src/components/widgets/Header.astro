@@ -170,7 +170,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 </header>
 
 <script>
-  import { buildAuthRedirectUrl } from '~/utils/download-redirect';
+  import { buildAuthRedirectUrl, rememberLangPreference } from '~/utils/download-redirect';
 
   function handleHeaderDownloadClick(e: MouseEvent) {
     const el = (e.currentTarget as HTMLElement);
@@ -178,6 +178,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     if (!href.includes('siplinx-ai.vercel.app')) return;
     e.preventDefault();
     const lang = window.location.pathname.startsWith('/ru') ? 'ru' : 'en';
+    rememberLangPreference(lang);
     const ph = (window as unknown as Record<string, unknown>).__ph as ((ev: string, p?: Record<string, unknown>) => void) | undefined;
     ph?.('trial_click', { location: 'header', lang, page: window.location.pathname });
     ph?.('auth_start', { location: 'header', lang, page: window.location.pathname });

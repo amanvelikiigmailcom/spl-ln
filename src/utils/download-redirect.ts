@@ -24,3 +24,17 @@ export function buildAuthRedirectUrl(downloadUrl: string): string {
   const redirect = encodeURIComponent(url.toString());
   return `${AUTH_START_URL}?redirect=${redirect}`;
 }
+
+/**
+ * The Google auth flow always lands back on the English /welcome page,
+ * regardless of which site language the visitor started from. Remember
+ * their starting language here so /welcome can bounce Russian visitors
+ * to /ru/welcome instead of guessing from navigator.language.
+ */
+export function rememberLangPreference(lang: 'en' | 'ru'): void {
+  try {
+    localStorage.setItem('siplinx_lang', lang);
+  } catch {
+    // localStorage unavailable (e.g. private mode) - /welcome falls back to navigator.language
+  }
+}

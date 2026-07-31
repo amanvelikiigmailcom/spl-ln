@@ -2,8 +2,8 @@
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
-  title: 'Welcome to Siplinx AI - Download Starting',
-  description: 'Thank you for signing in. Your download is starting automatically.',
+  title: 'Добро пожаловать в Siplinx AI - скачивание начинается',
+  description: 'Спасибо за вход. Скачивание начинается автоматически.',
   robots: { index: false, follow: false },
 };
 ---
@@ -35,18 +35,20 @@ const metadata = {
 
       <!-- Step-by-step state -->
       <div id="steps">
-        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">You're in!</h1>
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Вы в системе!</h1>
         <p class="text-gray-500 dark:text-slate-400 mb-4">
-          Your free trial is activated. Follow the steps below to finish setup.
+          Бесплатный пробный период активирован. Выполните шаги ниже, чтобы завершить установку.
         </p>
 
         <div
           class="mb-8 px-5 py-4 rounded-xl bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 text-left"
         >
-          <p class="font-semibold text-blue-900 dark:text-blue-200">Please wait - your download has started.</p>
+          <p class="font-semibold text-blue-900 dark:text-blue-200">
+            Пожалуйста, подождите - скачивание уже началось.
+          </p>
           <p class="text-sm text-blue-800 dark:text-blue-300 mt-1">
-            Check your browser's downloads. Open the file and install it, then come back to this page and press
-            <strong>Next</strong> below.
+            Проверьте загрузки в браузере. Откройте файл и установите приложение, затем вернитесь на эту страницу и
+            нажмите <strong>Далее</strong> ниже.
           </p>
         </div>
 
@@ -57,11 +59,11 @@ const metadata = {
               >1</span
             >
             <div>
-              <p class="font-semibold text-gray-900 dark:text-white">Download Siplinx AI</p>
+              <p class="font-semibold text-gray-900 dark:text-white">Скачайте Siplinx AI</p>
               <p class="text-sm text-gray-500 dark:text-slate-400">
-                Your download should start automatically.
+                Скачивание должно начаться автоматически.
                 <a id="dl-manual" href="#" class="text-blue-600 dark:text-blue-400 underline"
-                  >Click here if it doesn't start</a
+                  >Нажмите здесь, если не началось</a
                 >.
               </p>
             </div>
@@ -72,9 +74,9 @@ const metadata = {
               >2</span
             >
             <div>
-              <p class="font-semibold text-gray-900 dark:text-white">Install it</p>
+              <p class="font-semibold text-gray-900 dark:text-white">Установите приложение</p>
               <p class="text-sm text-gray-500 dark:text-slate-400">
-                Open the downloaded file and follow the installer steps.
+                Откройте скачанный файл и пройдите шаги установки.
               </p>
             </div>
           </li>
@@ -84,31 +86,31 @@ const metadata = {
               >3</span
             >
             <div>
-              <p class="font-semibold text-gray-900 dark:text-white">Come back and confirm</p>
+              <p class="font-semibold text-gray-900 dark:text-white">Вернитесь сюда и подтвердите</p>
               <p class="text-sm text-gray-500 dark:text-slate-400 mb-3">
-                Once it's installed, click the button below.
+                После установки нажмите кнопку ниже.
               </p>
               <button
                 id="btn-done"
                 type="button"
                 class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-violet-600 text-white font-semibold shadow hover:scale-105 transition-all duration-200"
               >
-                I've installed it - Next
+                Установил(а) - Далее
               </button>
             </div>
           </li>
         </ol>
 
         <p class="text-xs text-gray-400 dark:text-slate-500">
-          Need help? <a href="/help/" class="underline hover:text-blue-500">Visit our Help Center</a>
+          Нужна помощь? <a href="/ru/help/" class="underline hover:text-blue-500">Центр поддержки</a>
         </p>
       </div>
 
       <!-- Confirmed state -->
       <div id="done" class="hidden">
-        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">All set!</h1>
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Готово!</h1>
         <p class="text-gray-500 dark:text-slate-400">
-          Open Siplinx AI on your computer and sign in to start your first meeting.
+          Откройте Siplinx AI на компьютере и войдите, чтобы начать первую встречу.
         </p>
       </div>
     </div>
@@ -116,45 +118,34 @@ const metadata = {
 </Layout>
 
 <script>
-  // The Google auth flow always lands here regardless of which site language
-  // the visitor started from. If they started on the Russian site, bounce
-  // them to the Russian version before doing anything else.
-  const storedLang = (() => {
-    try {
-      return localStorage.getItem('siplinx_lang');
-    } catch {
-      return null;
-    }
-  })();
-  const isRu = storedLang ? storedLang === 'ru' : navigator.language.toLowerCase().startsWith('ru');
-
-  if (isRu) {
-    window.location.replace(`/ru/welcome/${window.location.search}`);
-  } else {
-    // Mark user as authenticated for future visits
-    localStorage.setItem('siplinx_authed', '1');
-
-    const params = new URLSearchParams(window.location.search);
-    const variant = params.get('variant');
-    const downloadUrl =
-      variant === 'direct'
-        ? 'https://siplinx-ai.vercel.app/download?variant=direct'
-        : 'https://siplinx-ai.vercel.app/download';
-
-    const manualLink = document.getElementById('dl-manual') as HTMLAnchorElement | null;
-    if (manualLink) manualLink.href = downloadUrl;
-
-    // Trigger the download right away - no artificial delay.
-    window.location.href = downloadUrl;
-
-    const ph = (window as unknown as Record<string, unknown>).__ph as
-      | ((ev: string, p?: Record<string, unknown>) => void)
-      | undefined;
-
-    document.getElementById('btn-done')?.addEventListener('click', () => {
-      ph?.('install_confirmed', { lang: 'en', variant: variant || 'default' });
-      document.getElementById('steps')?.classList.add('hidden');
-      document.getElementById('done')?.classList.remove('hidden');
-    });
+  // Mark user as authenticated for future visits
+  localStorage.setItem('siplinx_authed', '1');
+  try {
+    localStorage.setItem('siplinx_lang', 'ru');
+  } catch {
+    // localStorage unavailable (e.g. private mode)
   }
+
+  const params = new URLSearchParams(window.location.search);
+  const variant = params.get('variant');
+  const downloadUrl =
+    variant === 'direct'
+      ? 'https://siplinx-ai.vercel.app/download?variant=direct'
+      : 'https://siplinx-ai.vercel.app/download';
+
+  const manualLink = document.getElementById('dl-manual') as HTMLAnchorElement | null;
+  if (manualLink) manualLink.href = downloadUrl;
+
+  // Trigger the download right away - no artificial delay.
+  window.location.href = downloadUrl;
+
+  const ph = (window as unknown as Record<string, unknown>).__ph as
+    | ((ev: string, p?: Record<string, unknown>) => void)
+    | undefined;
+
+  document.getElementById('btn-done')?.addEventListener('click', () => {
+    ph?.('install_confirmed', { lang: 'ru', variant: variant || 'default' });
+    document.getElementById('steps')?.classList.add('hidden');
+    document.getElementById('done')?.classList.remove('hidden');
+  });
 </script>
