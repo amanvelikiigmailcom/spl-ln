@@ -36,9 +36,19 @@ const metadata = {
       <!-- Step-by-step state (EN) -->
       <div id="steps-en" class="lang-block">
         <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">You're in!</h1>
-        <p class="text-gray-500 dark:text-slate-400 mb-8">
+        <p class="text-gray-500 dark:text-slate-400 mb-4">
           Your free trial is activated. Follow the steps below to finish setup.
         </p>
+
+        <div
+          class="mb-8 px-5 py-4 rounded-xl bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 text-left"
+        >
+          <p class="font-semibold text-blue-900 dark:text-blue-200">Please wait - your download has started.</p>
+          <p class="text-sm text-blue-800 dark:text-blue-300 mt-1">
+            Check your browser's downloads. Open the file and install it, then come back to this page and press
+            <strong>Next</strong> below.
+          </p>
+        </div>
 
         <ol class="text-left space-y-5 mb-8">
           <li class="flex gap-4">
@@ -83,7 +93,7 @@ const metadata = {
                 type="button"
                 class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-violet-600 text-white font-semibold shadow hover:scale-105 transition-all duration-200"
               >
-                I've installed it - Done
+                I've installed it - Next
               </button>
             </div>
           </li>
@@ -97,9 +107,21 @@ const metadata = {
       <!-- Step-by-step state (RU) -->
       <div id="steps-ru" class="lang-block hidden">
         <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Вы в системе!</h1>
-        <p class="text-gray-500 dark:text-slate-400 mb-8">
+        <p class="text-gray-500 dark:text-slate-400 mb-4">
           Бесплатный пробный период активирован. Выполните шаги ниже, чтобы завершить установку.
         </p>
+
+        <div
+          class="mb-8 px-5 py-4 rounded-xl bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 text-left"
+        >
+          <p class="font-semibold text-blue-900 dark:text-blue-200">
+            Пожалуйста, подождите - скачивание уже началось.
+          </p>
+          <p class="text-sm text-blue-800 dark:text-blue-300 mt-1">
+            Проверьте загрузки в браузере. Откройте файл и установите приложение, затем вернитесь на эту страницу и
+            нажмите <strong>Далее</strong> ниже.
+          </p>
+        </div>
 
         <ol class="text-left space-y-5 mb-8">
           <li class="flex gap-4">
@@ -144,7 +166,7 @@ const metadata = {
                 type="button"
                 class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-violet-600 text-white font-semibold shadow hover:scale-105 transition-all duration-200"
               >
-                Установил(а) - Готово
+                Установил(а) - Далее
               </button>
             </div>
           </li>
