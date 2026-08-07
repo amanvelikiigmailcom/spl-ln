@@ -6,7 +6,7 @@
 
 Никаких feature-веток. Только `main`.
 
-### 2. После КАЖДОГО изменения — коммит + пуш + деплой
+### 2. После КАЖДОГО изменения — коммит + пуш в `main` + деплой
 
 ```bash
 git add <файлы>
@@ -15,19 +15,13 @@ git pull --rebase origin main
 git push -u origin main
 ```
 
-Затем сразу деплой через GitHub MCP:
+`git push -u origin main` — штатный, подтверждённый рабочий способ (проверено на практике): при подключённом GitHub-приложении Claude (см. раздел 5) он проходит сам, без токенов и без ручного вызова MCP. Никакого отдельного `mcp__github__actions_run_trigger` вызывать не нужно и не следует — старая версия этого раздела ссылалась на чужой репозиторий (`aman-tiger/siplinxai-landing`), это ошибка, реальный репозиторий — `amanvelikiigmailcom/spl-ln`, деплой из него запускается не вручную, а автоматически.
 
-```
-mcp__github__actions_run_trigger(
-  method="run_workflow",
-  owner="aman-tiger",
-  repo="siplinxai-landing",
-  workflow_id="actions.yaml",
-  ref="main"
-)
-```
+**Как реально запускается деплой:** в самом репозитории есть `.github/workflows/actions.yaml` с триггером `on: push: branches: [main]` — то есть он стартует **сам, автоматически**, сразу после `git push -u origin main`, без какого-либо отдельного шага или MCP-вызова. Внутри три job'а: `build` (проверка сборки), `check` (автофикс ESLint/Prettier + `npm run check`), `deploy` (сборка + `wrangler pages deploy dist --project-name=siplinxai-landing --branch=main` с секретами `CF_API_TOKEN`/`CF_ACCOUNT_ID`).
 
-Дождаться завершения и проверить через curl:
+⚠️ **Текущее известное состояние (проверить актуальность через `mcp__github__actions_list`, method=list_workflow_runs):** на момент последней проверки job `check` падал на ESLint-ошибках в инлайн-скрипте Meta Pixel в `src/layouts/Layout.astro` (~строка 145), а job `deploy` падал из-за отсутствующего/невалидного `CLOUDFLARE_API_TOKEN` (секрет `CF_API_TOKEN` в Settings репозитория — см. раздел 6). Из-за этого автоматический деплой после пуша **не долетает до продакшена**, даже если сам `git push` прошёл успешно. Поэтому после пуша в `main` нужно **дополнительно задеплоить вручную** через `wrangler` (команда — в разделе 6), пока эти два job'а не починены, и только потом проверять прод через curl.
+
+Проверить, что деплой реально долетел, через curl:
 
 ```bash
 curl -s https://siplinx.com/<страница>/ | grep "маркер"
