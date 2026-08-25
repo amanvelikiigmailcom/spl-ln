@@ -37,7 +37,7 @@ const metadata = {
       <div id="steps">
         <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">You're in!</h1>
         <p class="text-gray-500 dark:text-slate-400 mb-4">
-          Your free trial is activated. Follow the steps below to finish setup.
+          Follow the steps below to download and finish setup.
         </p>
 
         <div
@@ -48,6 +48,7 @@ const metadata = {
             Check your browser's downloads. Open the file and install it, then come back to this page and press
             <strong>Next</strong> below.
           </p>
+          <p class="font-semibold text-blue-900 dark:text-blue-200 mt-3">Note: You must complete authorization after downloading to use the app.</p>
         </div>
 
         <ol class="text-left space-y-5 mb-8">
@@ -84,9 +85,9 @@ const metadata = {
               >3</span
             >
             <div>
-              <p class="font-semibold text-gray-900 dark:text-white">Come back and confirm</p>
+              <p class="font-semibold text-gray-900 dark:text-white">Come back and authorize</p>
               <p class="text-sm text-gray-500 dark:text-slate-400 mb-3">
-                Once it's installed, click the button below.
+                Once it's installed, click the button below to complete authorization.
               </p>
               <button
                 id="btn-done"
@@ -126,35 +127,46 @@ const metadata = {
       return null;
     }
   })();
+  const params = new URLSearchParams(window.location.search);
+  const isAuthSuccess = params.get('auth_success') === '1';
+
   const isRu = storedLang ? storedLang === 'ru' : navigator.language.toLowerCase().startsWith('ru');
 
-  if (isRu) {
+  if (isRu && !isAuthSuccess) {
     window.location.replace(`/ru/welcome/${window.location.search}`);
   } else {
-    // Mark user as authenticated for future visits
-    localStorage.setItem('siplinx_authed', '1');
-
-    const params = new URLSearchParams(window.location.search);
-    const variant = params.get('variant');
-    const downloadUrl =
-      variant === 'direct'
-        ? 'https://siplinx-ai.vercel.app/download?variant=direct'
-        : 'https://siplinx-ai.vercel.app/download';
-
-    const manualLink = document.getElementById('dl-manual') as HTMLAnchorElement | null;
-    if (manualLink) manualLink.href = downloadUrl;
-
-    // Trigger the download right away - no artificial delay.
-    window.location.href = downloadUrl;
-
-    const ph = (window as unknown as Record<string, unknown>).__ph as
-      | ((ev: string, p?: Record<string, unknown>) => void)
-      | undefined;
-
-    document.getElementById('btn-done')?.addEventListener('click', () => {
-      ph?.('install_confirmed', { lang: 'en', variant: variant || 'default' });
+    if (isAuthSuccess) {
+      // Mark user as authenticated for future visits
+      localStorage.setItem('siplinx_authed', '1');
       document.getElementById('steps')?.classList.add('hidden');
       document.getElementById('done')?.classList.remove('hidden');
-    });
+    } else {
+      const variant = params.get('variant');
+      const downloadUrl =
+        variant === 'direct'
+          ? 'https://siplinx-ai.vercel.app/download?variant=direct'
+          : 'https://siplinx-ai.vercel.app/download';
+
+      const manualLink = document.getElementById('dl-manual') as HTMLAnchorElement | null;
+      if (manualLink) manualLink.href = downloadUrl;
+
+      // Trigger the download right away - no artificial delay.
+      window.location.href = downloadUrl;
+
+      const ph = (window as unknown as Record<string, unknown>).__ph as
+        | ((ev: string, p?: Record<string, unknown>) => void)
+        | undefined;
+
+      document.getElementById('btn-done')?.addEventListener('click', () => {
+        ph?.('install_confirmed', { lang: 'en', variant: variant || 'default' });
+
+        // Trigger auth flow
+        import('~/utils/download-redirect').then(({ buildAuthRedirectUrl }) => {
+          const currentUrl = new URL(window.location.href);
+          currentUrl.searchParams.set('auth_success', '1');
+          window.location.href = buildAuthRedirectUrl(currentUrl.toString());
+        });
+      });
+    }
   }
 </script>

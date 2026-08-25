@@ -37,7 +37,7 @@ const metadata = {
       <div id="steps">
         <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">Вы в системе!</h1>
         <p class="text-gray-500 dark:text-slate-400 mb-4">
-          Бесплатный пробный период активирован. Выполните шаги ниже, чтобы завершить установку.
+          Выполните шаги ниже, чтобы скачать и завершить установку.
         </p>
 
         <div
@@ -50,6 +50,7 @@ const metadata = {
             Проверьте загрузки в браузере. Откройте файл и установите приложение, затем вернитесь на эту страницу и
             нажмите <strong>Далее</strong> ниже.
           </p>
+          <p class="font-semibold text-blue-900 dark:text-blue-200 mt-3">Примечание: вы должны пройти авторизацию после скачивания, чтобы использовать приложение.</p>
         </div>
 
         <ol class="text-left space-y-5 mb-8">
@@ -86,9 +87,9 @@ const metadata = {
               >3</span
             >
             <div>
-              <p class="font-semibold text-gray-900 dark:text-white">Вернитесь сюда и подтвердите</p>
+              <p class="font-semibold text-gray-900 dark:text-white">Вернитесь сюда и авторизуйтесь</p>
               <p class="text-sm text-gray-500 dark:text-slate-400 mb-3">
-                После установки нажмите кнопку ниже.
+                После установки нажмите кнопку ниже, чтобы пройти авторизацию.
               </p>
               <button
                 id="btn-done"
@@ -118,8 +119,6 @@ const metadata = {
 </Layout>
 
 <script>
-  // Mark user as authenticated for future visits
-  localStorage.setItem('siplinx_authed', '1');
   try {
     localStorage.setItem('siplinx_lang', 'ru');
   } catch {
@@ -127,25 +126,39 @@ const metadata = {
   }
 
   const params = new URLSearchParams(window.location.search);
-  const variant = params.get('variant');
-  const downloadUrl =
-    variant === 'direct'
-      ? 'https://siplinx-ai.vercel.app/download?variant=direct'
-      : 'https://siplinx-ai.vercel.app/download';
+  const isAuthSuccess = params.get('auth_success') === '1';
 
-  const manualLink = document.getElementById('dl-manual') as HTMLAnchorElement | null;
-  if (manualLink) manualLink.href = downloadUrl;
-
-  // Trigger the download right away - no artificial delay.
-  window.location.href = downloadUrl;
-
-  const ph = (window as unknown as Record<string, unknown>).__ph as
-    | ((ev: string, p?: Record<string, unknown>) => void)
-    | undefined;
-
-  document.getElementById('btn-done')?.addEventListener('click', () => {
-    ph?.('install_confirmed', { lang: 'ru', variant: variant || 'default' });
+  if (isAuthSuccess) {
+    // Mark user as authenticated for future visits
+    localStorage.setItem('siplinx_authed', '1');
     document.getElementById('steps')?.classList.add('hidden');
     document.getElementById('done')?.classList.remove('hidden');
-  });
+  } else {
+    const variant = params.get('variant');
+    const downloadUrl =
+      variant === 'direct'
+        ? 'https://siplinx-ai.vercel.app/download?variant=direct'
+        : 'https://siplinx-ai.vercel.app/download';
+
+    const manualLink = document.getElementById('dl-manual') as HTMLAnchorElement | null;
+    if (manualLink) manualLink.href = downloadUrl;
+
+    // Trigger the download right away - no artificial delay.
+    window.location.href = downloadUrl;
+
+    const ph = (window as unknown as Record<string, unknown>).__ph as
+      | ((ev: string, p?: Record<string, unknown>) => void)
+      | undefined;
+
+    document.getElementById('btn-done')?.addEventListener('click', () => {
+      ph?.('install_confirmed', { lang: 'ru', variant: variant || 'default' });
+
+      // Trigger auth flow
+      import('~/utils/download-redirect').then(({ buildAuthRedirectUrl }) => {
+        const currentUrl = new URL(window.location.href);
+        currentUrl.searchParams.set('auth_success', '1');
+        window.location.href = buildAuthRedirectUrl(currentUrl.toString());
+      });
+    });
+  }
 </script>
