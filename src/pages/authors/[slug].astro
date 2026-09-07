@@ -146,5 +146,5 @@ const personSchema = {
     )
   }
 
-  <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(personSchema).replace(/</g, '\\u003c')} />
 </Layout>

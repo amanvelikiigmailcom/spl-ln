@@ -77,6 +77,6 @@ const metadata = {
         url: `https://siplinx.com/authors/${a.slug}/`,
         name: a.name,
       })),
-    })}
+    }).replace(/</g, '\\u003c')}
   />
 </Layout>
