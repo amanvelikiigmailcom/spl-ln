@@ -142,13 +142,21 @@ export const findPostsBySlugs = async (slugs: Array<string>): Promise<Array<Post
   if (!Array.isArray(slugs)) return [];
 
   const posts = await fetchPosts();
+  const map = new Map<string, Post>();
+  for (const post of posts) {
+    if (!map.has(post.slug)) {
+      map.set(post.slug, post);
+    }
+  }
 
-  return slugs.reduce(function (r: Array<Post>, slug: string) {
-    posts.some(function (post: Post) {
-      return slug === post.slug && r.push(post);
-    });
-    return r;
-  }, []);
+  const result: Array<Post> = [];
+  for (const slug of slugs) {
+    const post = map.get(slug);
+    if (post) {
+      result.push(post);
+    }
+  }
+  return result;
 };
 
 /** */
@@ -156,13 +164,21 @@ export const findPostsByIds = async (ids: Array<string>): Promise<Array<Post>> =
   if (!Array.isArray(ids)) return [];
 
   const posts = await fetchPosts();
+  const map = new Map<string, Post>();
+  for (const post of posts) {
+    if (!map.has(post.id)) {
+      map.set(post.id, post);
+    }
+  }
 
-  return ids.reduce(function (r: Array<Post>, id: string) {
-    posts.some(function (post: Post) {
-      return id === post.id && r.push(post);
-    });
-    return r;
-  }, []);
+  const result: Array<Post> = [];
+  for (const id of ids) {
+    const post = map.get(id);
+    if (post) {
+      result.push(post);
+    }
+  }
+  return result;
 };
 
 /** */
