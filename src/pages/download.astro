@@ -137,7 +137,7 @@ const metadata = {
   </div>
 
   <script>
-    import { buildAuthRedirectUrl, rememberLangPreference } from '~/utils/download-redirect';
+    import { rememberLangPreference } from '~/utils/download-redirect';
 
     function detectOS(): 'mac' | 'windows' {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -177,11 +177,11 @@ const metadata = {
       }
     }
 
-    // Auth flow: Google → /welcome → download
+    // Direct to welcome page to download first
     function handleDlClick(e: MouseEvent) {
       e.preventDefault();
       rememberLangPreference('en');
-      window.location.href = buildAuthRedirectUrl('https://siplinx-ai.vercel.app/download');
+      window.location.href = '/welcome/';
     }
     document.querySelectorAll<HTMLElement>('a[href*="siplinx-ai.vercel.app/download"]').forEach((el) => {
       el.addEventListener('click', handleDlClick as EventListener);

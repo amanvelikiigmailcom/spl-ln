@@ -244,7 +244,7 @@ const metadata = {
 </Layout>
 
 <script>
-  import { buildAuthRedirectUrl, rememberLangPreference } from '~/utils/download-redirect';
+  import { rememberLangPreference } from '~/utils/download-redirect';
 
   const label = document.getElementById('dl-label');
   if (label) {
@@ -252,15 +252,14 @@ const metadata = {
     if (isWin) label.textContent = 'Download for Windows';
   }
 
-  // Auth flow: Google → /welcome?variant=direct → download
+  // Direct to welcome page to download first
   function handleGetDownloadClick(e: MouseEvent) {
     e.preventDefault();
     rememberLangPreference('en');
     const ph = (window as unknown as Record<string, unknown>).__ph as ((ev: string, p?: Record<string, unknown>) => void) | undefined;
     ph?.('get_cta_click', { lang: 'en', page: '/get/', variant: 'direct' });
-    ph?.('google_signin_click', { lang: 'en', page: '/get/', variant: 'direct' });
-    ph?.('auth_start', { location: 'get_page', lang: 'en', variant: 'direct' });
-    window.location.href = buildAuthRedirectUrl('https://siplinx-ai.vercel.app/download?variant=direct');
+
+    window.location.href = '/welcome/?variant=direct';
   }
 
   document.querySelectorAll<HTMLElement>('a[href*="siplinx-ai.vercel.app/download"]').forEach((el) => {
